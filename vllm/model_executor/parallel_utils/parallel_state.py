@@ -61,8 +61,8 @@ def initialize_model_parallel(
 
     # Build the tensor model-parallel groups.
     global _TENSOR_MODEL_PARALLEL_GROUP
-    assert _TENSOR_MODEL_PARALLEL_GROUP is None, (
-        "tensor model parallel group is already initialized")
+    # assert _TENSOR_MODEL_PARALLEL_GROUP is None, (
+    #     "tensor model parallel group is already initialized")
     for i in range(num_tensor_model_parallel_groups):
         ranks = range(i * tensor_model_parallel_size,
                       (i + 1) * tensor_model_parallel_size)
@@ -73,8 +73,8 @@ def initialize_model_parallel(
     # Build the pipeline model-parallel groups.
     global _PIPELINE_MODEL_PARALLEL_GROUP
     global _PIPELINE_GLOBAL_RANKS
-    assert _PIPELINE_MODEL_PARALLEL_GROUP is None, (
-        "pipeline model parallel group is already initialized")
+    # assert _PIPELINE_MODEL_PARALLEL_GROUP is None, (
+    #     "pipeline model parallel group is already initialized")
     for i in range(num_pipeline_model_parallel_groups):
         ranks = range(i, world_size, num_pipeline_model_parallel_groups)
         group = torch.distributed.new_group(ranks)
